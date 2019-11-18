@@ -24,3 +24,8 @@ jobs:
         npm test
       env:
         CI: true
+
+    - name: Run linter
+      run: |
+        npm install eslint --save-dev
+        ./node_modules/.bin/eslint --no-eslintrc .
