@@ -21,3 +21,14 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+  publish-docker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - run: |
+        docker build -t docker.pkg.github.com/andersjanmyr/octodog/octodog:${{ github.sha }} .
+        docker login docker.pkg.github.com -u andersjanmyr -p $GITHUB_TOKEN
+        docker push docker.pkg.github.com/andersjanmyr/octodog/octodog:${{ github.sha }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
