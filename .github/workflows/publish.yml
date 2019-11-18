@@ -1,7 +1,9 @@
 name: Node CI
 
-on: [push]
-
+on:
+  push:
+    branches:
+      - master
 jobs:
   publish:
     env:
@@ -17,8 +19,6 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@andersjanmyr'
       - run: npm ci
-      - name: Publish
-        run: npm publish
-        if: branch == 'master'
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
