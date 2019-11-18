@@ -45,6 +45,6 @@ jobs:
 
     - name: Upload report
       uses: actions/upload-artifact@master
-        with:
-          name: coverage
-          path: ${{ github.workspace }}/coverage
+      with:
+        name: coverage
+        path: ${{ github.workspace }}/coverage
