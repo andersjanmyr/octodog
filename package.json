@@ -1,6 +1,6 @@
 {
   "name": "@andersjanmyr/octodog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Octodog",
   "main": "index.js",
   "scripts": {
