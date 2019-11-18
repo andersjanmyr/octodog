@@ -10,16 +10,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: ["${{env.NODE_VERSION}}"]
-
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ env.node-version }}
       uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: |
         npm ci
