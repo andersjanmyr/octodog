@@ -47,4 +47,5 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: octodog
-        path: ${{ github.workspace }}/images/octodog.jpg
+        path: ${{ github.workspace }}/images
+
