@@ -1,6 +1,6 @@
 # octodog
 
-![](https://github.com/andersjanmyr/octodog/workflows/nodebuild/badge.svg)
+![](https://github.com/andersjanmyr/octodog/workflows/publish/badge.svg)
 
 GitHub Actions workshop repository. The labs are in the [docs/README.md](https://github.com/octodemo/octocat-zen/tree/master/docs) document.
 
