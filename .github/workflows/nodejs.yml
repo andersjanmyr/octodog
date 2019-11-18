@@ -59,12 +59,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-     - uses: gr2m/get-json-paths-action@v1.x
-      id: parse_deployment
-      with:
-        json: ${{ steps.create_deployment.outputs.data }}
-        id: "id"
-
     - name: Deploy to Zeit
       uses: amondnet/now-deployment@v1
       with:
@@ -81,6 +75,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    - uses: gr2m/get-json-paths-action@v1.x
+      id: parse_deployment
+      with:
+        json: ${{ steps.create_deployment.outputs.data }}
+        id: "id"
+
     - uses: octokit/request-action@v1.x
       if: failure()
       with:
@@ -90,6 +90,7 @@ jobs:
         state: "failure"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - uses: octokit/request-action@v1.x
       with:
         route: POST /repos/:owner/:repo/deployments/:deployment_id/statuses
