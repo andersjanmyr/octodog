@@ -15,7 +15,7 @@ describe('loading express', function () {
     });
     it('responds to /image', function testImage(done) {
         request(server)
-            .get('/images')
+            .get('/image')
             .expect(200, done);
     });
     it('404 everything else', function testPath(done) {
