@@ -8,20 +8,18 @@ jobs:
       NODE_VERSION: 12.x
     runs-on: ubuntu-latest
 
+    needs: build
+    runs-on: ubuntu-latest
     steps:
-    - publish-gpr:
-      needs: build
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v1
-        - uses: actions/setup-node@v1
-          with:
-            node-version: 12.x
-            registry-url: https://npm.pkg.github.com/
-            scope: 'andersjanmyr'
-        - run: npm ci
-        - name: Publish
-          run: npm publish
-          if: branch == 'master'
-          env:
-            NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+          registry-url: https://npm.pkg.github.com/
+          scope: 'andersjanmyr'
+      - run: npm ci
+      - name: Publish
+        run: npm publish
+        if: branch == 'master'
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
