@@ -65,6 +65,12 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         zeit-token: ${{ secrets.ZEIT_TOKEN }}
 
+    - uses: gr2m/get-json-paths-action@v1.x
+      id: parse_deployment
+      with:
+        json: ${{ steps.create_deployment.outputs.data }}
+        id: "id"
+
     - uses: octokit/request-action@v1.x
       with:
         route: POST /repos/:owner/:repo/deployments/:deployment_id/statuses
@@ -74,12 +80,6 @@ jobs:
         target_url: ${{ steps.zeit_deployment.outputs.preview-url }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - uses: gr2m/get-json-paths-action@v1.x
-      id: parse_deployment
-      with:
-        json: ${{ steps.create_deployment.outputs.data }}
-        id: "id"
 
     - uses: octokit/request-action@v1.x
       if: failure()
