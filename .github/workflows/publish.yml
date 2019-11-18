@@ -3,7 +3,7 @@ name: Node CI
 on:
   push:
     branches:
-      - npm_publish
+      - master
 jobs:
   publish:
     env:
