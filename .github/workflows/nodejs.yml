@@ -5,11 +5,14 @@ on: [push]
 jobs:
   build:
 
+    env:
+      NODE_VERSION: 12.x
+
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [${{env.NODE_VERSION}}]
 
     steps:
     - uses: actions/checkout@v1
