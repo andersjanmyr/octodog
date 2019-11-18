@@ -17,7 +17,7 @@ jobs:
           with:
             node-version: 12.x
             registry-url: https://npm.pkg.github.com/
-            scope: '@<your handle>'
+            scope: 'andersjanmyr'
         - run: npm ci
         - name: Publish
           if: branch == 'master'
