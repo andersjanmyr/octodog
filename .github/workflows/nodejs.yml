@@ -49,3 +49,8 @@ jobs:
         name: octodog
         path: ${{ github.workspace }}/images
 
+    - name: Deploy to Zeit
+      uses: amondnet/now-deployment@v1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        zeit-token: ${{ secrets.ZEIT_TOKEN }}
