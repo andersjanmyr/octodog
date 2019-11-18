@@ -21,7 +21,7 @@ jobs:
           ${{ runner.os }}-node-
 
     - name: Add comment
-      if: github.event_name == 'pull_request' && (github.event.action == 'opened')
+      if: github.event_name == 'pull_request'
       uses: actions/github@v1.0.0
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
