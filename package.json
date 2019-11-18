@@ -1,7 +1,7 @@
 {
-  "name": "@octodemo/octocat-zen",
+  "name": "@andersjanmyr/octodog",
   "version": "1.0.0",
-  "description": "Octocat Zen",
+  "description": "Octodog",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com:octodemo/octocat-zen.git"
+    "url": "ssh://git@github.com:andersjanmyr/octodog.git"
   },
   "author": "",
   "license": "ISC",
