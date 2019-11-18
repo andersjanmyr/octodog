@@ -8,7 +8,8 @@ jobs:
       NODE_VERSION: 12.x
     runs-on: ubuntu-latest
 
-    publish-gpr:
+    steps:
+    - publish-gpr:
       needs: build
       runs-on: ubuntu-latest
       steps:
