@@ -1,6 +1,6 @@
 name: Node CI
 
-on: [push]
+on: [pull_request]
 
 jobs:
   build:
@@ -13,14 +13,20 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
     - name: Add comment
       if: github.event_name == 'pull_request' && (github.event.action == 'opened')
       uses: actions/github@v1.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          args: comment "Thank you for opening this pull request :tada::sparkles:"
-      if: github.event_name == 'pull_request' &&
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      with:
+        args: comment "Thank you for opening this pull request :tada::sparkles:"
 
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v1
@@ -36,3 +42,10 @@ jobs:
       run: |
         npm install eslint --save-dev
         ./node_modules/.bin/eslint --no-eslintrc .
+
+    - name: Upload octodog
+      uses: actions/upload-artifact@master
+      with:
+        name: octodog
+        path: ${{ github.workspace }}/images
+
