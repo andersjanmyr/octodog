@@ -90,23 +90,3 @@ jobs:
         state: "failure"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - uses: octokit/request-action@v1.x
-      with:
-        route: POST /repos/:owner/:repo/deployments/:deployment_id/statuses
-        deployment_id: ${{ steps.parse_deployment.outputs.id }}
-        environment: "review"
-        state: "success"
-        target_url: ${{ steps.zeit_deployment.outputs.preview-url }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - uses: octokit/request-action@v1.x
-      if: failure()
-      with:
-        route: POST /repos/:owner/:repo/deployments/:deployment_id/statuses
-        deployment_id: ${{ steps.parse_deployment.outputs.id }}
-        environment: "review"
-        state: "failure"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
