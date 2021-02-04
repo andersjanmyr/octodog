@@ -26,8 +26,13 @@ jobs:
         env:
           EVENT_NAME: ${{ github.event_name }}
           REF: ${{ github.ref }}
+        run: echo "Event name $EVENT_NAME and ref $REF"
+      - name: Env
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REF: ${{ github.ref }}
           VAR_WITH_PLUS: ${{ secrets.VAR_WITH_PLUS }}
-        run: echo "Event name $EVENT_NAME and ref $REF and VAR_WITH_PLUS $VAR_WITH_PLUS" > text.tmp
+        run: env > text.tmp
       - name: File
         run: cat text.tmp
       - name: Outputs
